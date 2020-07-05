@@ -13,8 +13,11 @@ RUN pip3 install -r requirements.txt
 COPY . /app
 
 COPY nginx.conf /etc/nginx
-RUN chmod +x ./start.sh
 
-RUN touch /app/debug.log && chmod 777 /app/debug.log
+# Download language models
+RUN wget -O /usr/local/lib/python3.6/dist-packages/speech_recognition/pocketsphinx-data/pocketsphinx-data.tar https://storage.googleapis.com/pocketsphinx_languages/pocketsphinx-data.tar && \
+    tar -xvf /usr/local/lib/python3.6/dist-packages/speech_recognition/pocketsphinx-data/pocketsphinx-data.tar
+
+RUN chmod +x ./start.sh
 
 CMD [ "./start.sh" ]

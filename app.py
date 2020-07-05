@@ -24,7 +24,6 @@ app = Flask(__name__)
 
 @app.route('/convert', methods=['POST'])
 def convert():
-	logger.debug(f"JSON: {request.form['hot_words']}")
 	language = request.form['language'] 
 	hot_words = [(hot_word, ACCURACY) for hot_word in json.loads(request.form['hot_words'])]
 	recognizer = sr.Recognizer()
@@ -47,6 +46,3 @@ def convert():
 	except Exception as err:
 		logger.error(f'Error while recognizing. Error: {err}')
 		return Response('', 500)
-
-if(__name__ == '__main__'):
-	app.run('0.0.0.0', port=5001)
