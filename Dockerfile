@@ -15,7 +15,7 @@ COPY . /app
 COPY nginx.conf /etc/nginx
 
 # Download language models
-RUN wget -O /usr/local/lib/python3.6/dist-packages/speech_recognition/pocketsphinx-data/pocketsphinx-data.tar https://storage.googleapis.com/pocketsphinx_languages/pocketsphinx-data.tar && \
+RUN curl https://storage.googleapis.com/pocketsphinx_languages/pocketsphinx-data.tar --output /usr/local/lib/python3.6/dist-packages/speech_recognition/pocketsphinx-data/pocketsphinx-data.tar && \
     tar -xvf /usr/local/lib/python3.6/dist-packages/speech_recognition/pocketsphinx-data/pocketsphinx-data.tar
 
 RUN chmod +x ./start.sh
