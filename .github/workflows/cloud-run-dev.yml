@@ -5,13 +5,13 @@ name: Build and Deploy to Cloud Run
 on:
   push:
     branches:
-    - master
+    - dev
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   PROJECT_ID: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
   RUN_REGION: us-central1
-  SERVICE_NAME: syncit-speech-to-text
+  SERVICE_NAME: syncit-speech-to-text-dev
 
 jobs:
   setup-build-deploy:
